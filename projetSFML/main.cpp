@@ -16,7 +16,7 @@ int main()
     sf::Sprite canvasSprite(canvas.getTexture());
 
     sf::Color brushColor = sf::Color::Black;
-    float brushRadius = 5.0f;
+    float brushRadius = 10.0f;
 
     bool isDrawing = false;
 
