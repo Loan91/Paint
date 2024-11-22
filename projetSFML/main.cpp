@@ -57,6 +57,7 @@ int main()
                 if (event.key.code == sf::Keyboard::N) brushColor = sf::Color::Black;
                 if (event.key.code == sf::Keyboard::P) brushColor = sf::Color::Color(187, 224, 230);
                 if (event.key.code == sf::Keyboard::V) brushColor = sf::Color::Color(199, 21, 133);
+                if (event.key.code == sf::Keyboard::A) brushRadius = 10.0f;
                 if (event.key.code == sf::Keyboard::E) canvas.clear(sf::Color::White);
                 if (event.key.code == sf::Keyboard::Up) brushRadius += 1.0f;
                 if (event.key.code == sf::Keyboard::Down && brushRadius > 1.0f) brushRadius -= 1.0f;
