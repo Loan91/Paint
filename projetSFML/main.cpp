@@ -47,7 +47,12 @@ int main()
                 if (event.key.code == sf::Keyboard::B) brushColor = sf::Color::Blue;
                 if (event.key.code == sf::Keyboard::Y) brushColor = sf::Color::Yellow;
                 if (event.key.code == sf::Keyboard::M) brushColor = sf::Color::Magenta;
-                if (event.key.code == sf::Keyboard::C) canvas.clear(sf::Color::White);
+                if (event.key.code == sf::Keyboard::C) brushColor = sf::Color::Cyan;
+                if (event.key.code == sf::Keyboard::W) brushColor = sf::Color::White;
+                if (event.key.code == sf::Keyboard::N) brushColor = sf::Color::Black;
+                if (event.key.code == sf::Keyboard::P) brushColor = sf::Color::Color(187, 224, 230);
+                if (event.key.code == sf::Keyboard::V) brushColor = sf::Color::Color(199, 21, 133);
+                if (event.key.code == sf::Keyboard::E) canvas.clear(sf::Color::White);
                 if (event.key.code == sf::Keyboard::Up) brushRadius += 1.0f;
                 if (event.key.code == sf::Keyboard::Down && brushRadius > 1.0f) brushRadius -= 1.0f;
                 if (event.key.code == sf::Keyboard::Escape) window.close();
