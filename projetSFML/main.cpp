@@ -6,7 +6,7 @@ int main()
     const int windowWidth = 800;
     const int windowHeight = 600;
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Affichage de Texture");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Paint");
     window.setFramerateLimit(60);
 
     sf::RenderTexture canvas;
@@ -38,6 +38,11 @@ int main()
             if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) 
             {
                 isDrawing = false;
+            }
+
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right)
+            {
+                brushRadius = 50.0f;
             }
 
             if (event.type == sf::Event::KeyPressed) 
