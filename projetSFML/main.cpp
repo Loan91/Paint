@@ -74,6 +74,11 @@ int main()
                 isDrawing = false;
             }
 
+            if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right)
+            {
+                brushRadius = 50.0f;
+            }
+
             if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::C) canvas.clear(sf::Color::White);
