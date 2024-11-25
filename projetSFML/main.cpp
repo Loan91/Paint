@@ -98,25 +98,48 @@ int main()
                         }
                     }
 
-                    isDrawing = !isTyping;
-
                     if (rectButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
                     {
-                        isRectangle = true;
-                        isCircle = false;
-                        isLine = false;
+                        if (isRectangle)
+                        {
+                            isRectangle = false;
+                        }
+                        else
+                        {
+                            isRectangle = true;
+                            isCircle = false;
+                            isLine = false;
+                        }
                     }
                     else if (circleButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
                     {
-                        isCircle = true;
-                        isRectangle = false;
-                        isLine = false;
+                        if (isCircle)
+                        {
+                            isCircle = false;
+                        }
+                        else
+                        {
+                            isCircle = true;
+                            isRectangle = false;
+                            isLine = false;
+                        }
                     }
                     else if (lineButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
                     {
-                        isLine = true;
-                        isRectangle = false;
-                        isCircle = false;
+                        if (isLine)
+                        {
+                            isLine = false;
+                        }
+                        else
+                        {
+                            isLine = true;
+                            isRectangle = false;
+                            isCircle = false;
+                        }
+                    }
+                    if (!isRectangle && !isCircle && !isLine)
+                    {
+                        isDrawing = !isTyping;
                     }
 
                     startPos = mousePos;
@@ -156,7 +179,7 @@ int main()
 
                 if (event.key.code == sf::Keyboard::I)
                 {
-                    if (imageTexture.loadFromFile("assets/Arcane.png"))
+                    if (imageTexture.loadFromFile("Assets/Arcane.png"))
                     {
                         imageSprite.setTexture(imageTexture);
                         imageSprite.setPosition(100, 100);
