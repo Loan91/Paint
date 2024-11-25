@@ -91,7 +91,7 @@ int main()
 
             if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Right)
             {
-                brushRadius = 70.0f;
+                brushRadius = 90.0f;
             }
 
             if (event.type == sf::Event::KeyPressed)
