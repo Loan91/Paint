@@ -21,6 +21,12 @@ int main()
 
     bool isDrawing = false;
     bool isTyping = false;
+    bool isRectangle = false;
+    bool isCircle = false;
+    bool isLine = false;
+
+    sf::Vector2i startPos;
+
     std::string inputText;
     sf::Font font;
     if (!font.loadFromFile("assets/arial.ttf"))
@@ -53,6 +59,18 @@ int main()
     sf::Sprite imageSprite;
     bool imageLoaded = false;
 
+    sf::RectangleShape rectButton(sf::Vector2f(buttonSize, buttonSize));
+    rectButton.setFillColor(sf::Color::Color(128, 128, 128));
+    rectButton.setPosition(windowWidth - 3 * (buttonSize + 5), 10);
+
+    sf::RectangleShape circleButton(sf::Vector2f(buttonSize, buttonSize));
+    circleButton.setFillColor(sf::Color::Color(115, 115, 115));
+    circleButton.setPosition(windowWidth - 2 * (buttonSize + 5), 10);
+
+    sf::RectangleShape lineButton(sf::Vector2f(buttonSize, buttonSize));
+    lineButton.setFillColor(sf::Color::Color(102, 102, 102));
+    lineButton.setPosition(windowWidth - buttonSize - 5, 10);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -81,6 +99,28 @@ int main()
                     }
 
                     isDrawing = !isTyping;
+
+                    if (rectButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+                    {
+                        isRectangle = true;
+                        isCircle = false;
+                        isLine = false;
+                    }
+                    else if (circleButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+                    {
+                        isCircle = true;
+                        isRectangle = false;
+                        isLine = false;
+                    }
+                    else if (lineButton.getGlobalBounds().contains(mousePos.x, mousePos.y))
+                    {
+                        isLine = true;
+                        isRectangle = false;
+                        isCircle = false;
+                    }
+
+                    startPos = mousePos;
+                    isDrawing = true;
                 }
             }
 
@@ -165,11 +205,45 @@ int main()
         if (isDrawing)
         {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
-            sf::CircleShape brush(brushRadius);
-            brush.setFillColor(brushColor);
-            brush.setPosition(mousePos.x - brushRadius, mousePos.y - brushRadius);
-            canvas.draw(brush);
+
+            if (!isRectangle && !isCircle && !isLine)
+            {
+                sf::CircleShape brush(brushRadius);
+                brush.setFillColor(brushColor);
+                brush.setPosition(mousePos.x - brushRadius, mousePos.y - brushRadius);
+                canvas.draw(brush);
+            }
+
+            if (isRectangle)
+            {
+                sf::RectangleShape rect(sf::Vector2f(mousePos.x - startPos.x, mousePos.y - startPos.y));
+                rect.setFillColor(sf::Color::Transparent);
+                rect.setOutlineColor(brushColor);
+                rect.setOutlineThickness(2);
+                rect.setPosition(startPos.x, startPos.y);
+                canvas.draw(rect);
+            }
+            else if (isCircle)
+            {
+                float radius = std::sqrt(std::pow(mousePos.x - startPos.x, 2) + std::pow(mousePos.y - startPos.y, 2));
+                sf::CircleShape circle(radius);
+                circle.setFillColor(sf::Color::Transparent);
+                circle.setOutlineColor(brushColor);
+                circle.setOutlineThickness(2);
+                circle.setPosition(startPos.x - radius, startPos.y - radius);
+                canvas.draw(circle);
+            }
+            else if (isLine)
+            {
+                sf::Vertex line[] =
+                {
+                    sf::Vertex(sf::Vector2f(startPos.x, startPos.y), brushColor),
+                    sf::Vertex(sf::Vector2f(mousePos.x, mousePos.y), brushColor)
+                };
+                canvas.draw(line, 2, sf::Lines);
+            }
         }
+
 
         canvas.display();
 
@@ -183,15 +257,9 @@ int main()
             window.draw(button);
         }
 
-        if (imageLoaded)
-        {
-            window.draw(imageSprite);
-        }
-
-        if (isTyping)
-        {
-            window.draw(text);
-        }
+        window.draw(rectButton);
+        window.draw(circleButton);
+        window.draw(lineButton);
 
         window.display();
     }
