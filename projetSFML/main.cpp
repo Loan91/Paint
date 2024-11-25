@@ -101,7 +101,7 @@ int main()
                 if (event.key.code == sf::Keyboard::A) brushRadius = 10.0f;
                 if (event.key.code == sf::Keyboard::Up) brushRadius += 1.0f;
                 if (event.key.code == sf::Keyboard::Down && brushRadius > 1.0f) brushRadius -= 1.0f;
-                if (event.key.code == sf::Keyboard::F && isTyping) isTyping = false;
+                if (event.key.code == sf::Keyboard::F && isTyping) isTyping = false; canvas.draw(text); canvas.display();
                 if (event.key.code == sf::Keyboard::Escape) window.close();
                 if (event.key.code == sf::Keyboard::T) isTyping = true;
 
@@ -151,6 +151,7 @@ int main()
                     newText.setFillColor(sf::Color::Black);
                     newText.setPosition(textPosition);
                     canvas.draw(newText);
+                    canvas.display();
                     inputText.clear();
                 }
                 else if (event.text.unicode < 128)
