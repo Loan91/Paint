@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
+#include <iostream>
 
 int main()
 {
@@ -42,9 +43,9 @@ int main()
 
     std::vector<sf::Color> colors
     {
-         sf::Color::Black, sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
-         sf::Color::Color(176, 224, 230), sf::Color::Color(199, 21, 133), sf::Color::Color(77, 40, 0),
-         sf::Color::Color(85, 128, 0), sf::Color::Color(77, 166, 255)
+        sf::Color::Black, sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
+        sf::Color::Color(176, 224, 230), sf::Color::Color(199, 21, 133), sf::Color::Color(77, 40, 0),
+        sf::Color::Color(85, 128, 0), sf::Color::Color(77, 166, 255)
     };
 
     for (size_t i = 0; i < colors.size(); ++i)
@@ -270,7 +271,7 @@ int main()
             }
             else if (isLine)
             {
-                sf::Vertex line[] =
+                sf::Vertex line[]
                 {
                     sf::Vertex(sf::Vector2f(startPos.x, startPos.y), brushColor),
                     sf::Vertex(sf::Vector2f(mousePos.x, mousePos.y), brushColor)
