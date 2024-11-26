@@ -42,9 +42,9 @@ int main()
 
     std::vector<sf::Color> colors
     {
-        sf::Color::Black, sf::Color::Red, sf::Color::Green, sf::Color::Blue,
-        sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
-        sf::Color::Color(176, 224, 230), sf::Color::Color(199, 21, 133)
+         sf::Color::Black, sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
+         sf::Color::Color(176, 224, 230), sf::Color::Color(199, 21, 133), sf::Color::Color(77, 40, 0),
+         sf::Color::Color(85, 128, 0), sf::Color::Color(77, 166, 255)
     };
 
     for (size_t i = 0; i < colors.size(); ++i)
@@ -170,6 +170,9 @@ int main()
                 if (event.key.code == sf::Keyboard::M) brushColor = sf::Color::Magenta;
                 if (event.key.code == sf::Keyboard::LControl) brushColor = sf::Color::Color(176, 224, 230);
                 if (event.key.code == sf::Keyboard::RControl) brushColor = sf::Color::Color(199, 21, 133);
+                if (event.key.code == sf::Keyboard::O) brushColor = sf::Color::Color(77, 40, 0);
+                if (event.key.code == sf::Keyboard::V) brushColor = sf::Color::Color(85, 128, 0);
+                if (event.key.code == sf::Keyboard::L) brushColor = sf::Color::Color(77, 166, 255);
                 if (event.key.code == sf::Keyboard::A) brushRadius = 10.0f;
                 if (event.key.code == sf::Keyboard::Up) brushRadius += 1.0f;
                 if (event.key.code == sf::Keyboard::Down && brushRadius > 1.0f) brushRadius -= 1.0f;
