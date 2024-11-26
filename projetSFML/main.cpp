@@ -283,6 +283,7 @@ int main()
         window.draw(rectButton);
         window.draw(circleButton);
         window.draw(lineButton);
+        if (imageLoaded) window.draw(imageSprite);
 
         window.display();
     }
