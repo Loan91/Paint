@@ -38,12 +38,12 @@ int main()
 
     sf::Vector2f textPosition = text.getPosition();
 
-    const int buttonSize = 40;
+    const int buttonSize = 50;
     std::vector<std::pair<sf::RectangleShape, sf::Color>> colorButtons;
 
     std::vector<sf::Color> colors
     {
-        sf::Color::Black, sf::Color::Red, sf::Color::Green, sf::Color::Blue, sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
+        sf::Color::Black, sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
         sf::Color::Color(176, 224, 230), sf::Color::Color(199, 21, 133), sf::Color::Color(77, 40, 0),
         sf::Color::Color(85, 128, 0), sf::Color::Color(77, 166, 255)
     };
@@ -239,19 +239,50 @@ int main()
             }
         }
 
+        sf::Vector2i lastMousePos(-1, -1);
+
         if (isDrawing)
         {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-            if (!isRectangle && !isCircle && !isLine)
+            if (lastMousePos.x != -1 && lastMousePos.y != -1)
             {
-                sf::CircleShape brush(brushRadius);
-                brush.setFillColor(brushColor);
-                brush.setPosition(mousePos.x - brushRadius, mousePos.y - brushRadius);
-                canvas.draw(brush);
+                sf::Vector2f start(lastMousePos.x, lastMousePos.y);
+                sf::Vector2f end(mousePos.x, mousePos.y);
+
+                sf::Vector2f direction = end - start;
+                float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
+
+                if (distance > 0)
+                {
+                    direction /= distance;
+                }
+
+                for (float i = 0; i <= distance; i += 2 * brushRadius)
+                {
+                    sf::Vector2f position = start + direction * i;
+
+                    sf::CircleShape brush(brushRadius);
+                    brush.setFillColor(brushColor);
+                    brush.setPosition(position.x - brushRadius, position.y - brushRadius);
+                    canvas.draw(brush);
+                }
             }
 
-            if (isRectangle)
+            sf::CircleShape brush(brushRadius);
+            brush.setFillColor(brushColor);
+            brush.setPosition(mousePos.x - brushRadius, mousePos.y - brushRadius);
+            canvas.draw(brush);
+
+            lastMousePos = mousePos;
+        }
+        else
+        {
+            lastMousePos = sf::Vector2i(-1, -1);
+        }
+
+
+            /*if (isRectangle)
             {
                 sf::RectangleShape rect(sf::Vector2f(mousePos.x - startPos.x, mousePos.y - startPos.y));
                 rect.setFillColor(sf::Color::Transparent);
@@ -279,7 +310,7 @@ int main()
                 };
                 canvas.draw(line, 2, sf::Lines);
             }
-        }
+        }*/
 
 
         canvas.display();
