@@ -38,12 +38,12 @@ int main()
 
     sf::Vector2f textPosition = text.getPosition();
 
-    const int buttonSize = 50;
+    const int buttonSize = 40;
     std::vector<std::pair<sf::RectangleShape, sf::Color>> colorButtons;
 
     std::vector<sf::Color> colors
     {
-        sf::Color::Black, sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
+        sf::Color::Black, sf::Color::Red, sf::Color::Green, sf::Color::Blue, sf::Color::Yellow, sf::Color::Cyan, sf::Color::Magenta,
         sf::Color::Color(176, 224, 230), sf::Color::Color(199, 21, 133), sf::Color::Color(77, 40, 0),
         sf::Color::Color(85, 128, 0), sf::Color::Color(77, 166, 255)
     };
