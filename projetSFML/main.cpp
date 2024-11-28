@@ -239,50 +239,19 @@ int main()
             }
         }
 
-        sf::Vector2i lastMousePos(-1, -1);
-
         if (isDrawing)
         {
             sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-            if (lastMousePos.x != -1 && lastMousePos.y != -1)
+            if (!isRectangle && !isCircle && !isLine)
             {
-                sf::Vector2f start(lastMousePos.x, lastMousePos.y);
-                sf::Vector2f end(mousePos.x, mousePos.y);
-
-                sf::Vector2f direction = end - start;
-                float distance = std::sqrt(direction.x * direction.x + direction.y * direction.y);
-
-                if (distance > 0)
-                {
-                    direction /= distance;
-                }
-
-                for (float i = 0; i <= distance; i += 2 * brushRadius)
-                {
-                    sf::Vector2f position = start + direction * i;
-
-                    sf::CircleShape brush(brushRadius);
-                    brush.setFillColor(brushColor);
-                    brush.setPosition(position.x - brushRadius, position.y - brushRadius);
-                    canvas.draw(brush);
-                }
+                sf::CircleShape brush(brushRadius);
+                brush.setFillColor(brushColor);
+                brush.setPosition(mousePos.x - brushRadius, mousePos.y - brushRadius);
+                canvas.draw(brush);
             }
 
-            sf::CircleShape brush(brushRadius);
-            brush.setFillColor(brushColor);
-            brush.setPosition(mousePos.x - brushRadius, mousePos.y - brushRadius);
-            canvas.draw(brush);
-
-            lastMousePos = mousePos;
-        }
-        else
-        {
-            lastMousePos = sf::Vector2i(-1, -1);
-        }
-
-
-            /*if (isRectangle)
+            if (isRectangle)
             {
                 sf::RectangleShape rect(sf::Vector2f(mousePos.x - startPos.x, mousePos.y - startPos.y));
                 rect.setFillColor(sf::Color::Transparent);
@@ -310,7 +279,7 @@ int main()
                 };
                 canvas.draw(line, 2, sf::Lines);
             }
-        }*/
+        }
 
 
         canvas.display();
