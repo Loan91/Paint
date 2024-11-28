@@ -193,7 +193,7 @@ int main()
 
                 if (event.key.code == sf::Keyboard::I)
                 {
-                    if (imageTexture.loadFromFile("Assets/Arcane.png"))
+                    if (imageTexture.loadFromFile("assets/Arcane.png"))
                     {
                         imageSprite.setTexture(imageTexture);
                         imageSprite.setPosition(100, 100);
