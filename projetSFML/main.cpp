@@ -161,7 +161,7 @@ int main()
             if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::C) canvas.clear(sf::Color::White);
-                if (event.key.code == sf::Keyboard::C) canvas.clear(sf::Color::Black);
+                if (event.key.code == sf::Keyboard::P) canvas.clear(sf::Color::Black);
                 if (event.key.code == sf::Keyboard::W) brushColor = sf::Color::White;
                 if (event.key.code == sf::Keyboard::N) brushColor = sf::Color::Black;
                 if (event.key.code == sf::Keyboard::R) brushColor = sf::Color::Red;
