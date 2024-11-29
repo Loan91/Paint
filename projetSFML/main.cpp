@@ -210,8 +210,8 @@ int main()
                     if (event.key.code == sf::Keyboard::D) imageSprite.move(5, 0);
                     if (event.key.code == sf::Keyboard::Z) imageSprite.move(0, -5);
                     if (event.key.code == sf::Keyboard::S) imageSprite.move(0, 5);
-                    if (event.key.code == sf::Keyboard::Add || event.key.code == sf::Keyboard::Equal) imageSprite.scale(1.1f, 1.1f);
-                    if (event.key.code == sf::Keyboard::Subtract || event.key.code == sf::Keyboard::Dash) imageSprite.scale(0.9f, 0.9f);
+                    if (event.key.code == sf::Keyboard::Add) imageSprite.scale(1.1f, 1.1f);
+                    if (event.key.code == sf::Keyboard::Subtract) imageSprite.scale(0.9f, 0.9f);
                     if (event.key.code == sf::Keyboard::Delete) imageLoaded = false;
                 }
             }
