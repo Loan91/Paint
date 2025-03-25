@@ -17,3 +17,5 @@ ZQSD to move the image
 suppr to delete the image
 
 P to turn the background black
+
+H to turn the background blue
