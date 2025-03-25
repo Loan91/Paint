@@ -10,8 +10,8 @@ I to make an image appear
 
 ZQSD to move the image
 
-+ to zoom on the image
+'+' to zoom on the image
 
-- to zoom off the image
+'-' to zoom off the image
 
 suppr to delete the image
